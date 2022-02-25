@@ -1,1 +1,1 @@
-new View(new Controller(new Model()))
+new TaskListController(new TaskListView(), new TaskList())
