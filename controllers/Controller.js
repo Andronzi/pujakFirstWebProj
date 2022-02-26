@@ -5,6 +5,7 @@ class TaskListController {
 
         this.view.bindAddTask(this.handleAddTask)
         this.view.bindChangeTask(this.handleChangeTask)
+        this.view.bindRemTask(this.handleRemTask)
     }
 
     handleAddTask = (title, date) => {
@@ -13,7 +14,12 @@ class TaskListController {
     }
 
     handleChangeTask = (title, date, id) => {
-        this.taskList.changeTask(title, date, id);
+        this.taskList.changeTask(title, date, id)
+        this.onTaskListChanged()
+    }
+
+    handleRemTask = (id) => {
+        this.taskList.removeById(id)
         this.onTaskListChanged()
     }
 

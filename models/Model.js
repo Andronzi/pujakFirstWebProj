@@ -5,7 +5,7 @@ class TaskList {
     }
 
     addTask(_title, _date) {
-        this.tasks.push({title: _title, date: _date, id: this.getNewId()})
+        this.tasks.push({title: _title, date: _date, id: this.getNewId().toString()})
     }
 
     //array = [{id: random, title: "", date: dateObj}]
@@ -17,6 +17,6 @@ class TaskList {
     }
 
     removeById(_id) {
-        this.tasks.remove(this.tasks.find(task => task.id === _id))
+        this.tasks = this.tasks.filter(task => task.id !== _id)
     }
 }
