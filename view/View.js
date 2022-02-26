@@ -10,9 +10,16 @@ class TaskListView {
     }
 
     bindAddTask(handler) {
-        this.addButton.addEventListener("click", ev => {
-            ev.preventDefault()
+        this.addButton.addEventListener("click", event => {
+            event.preventDefault()
             handler(this.taskInput.value, this.dateInput.value)
+        })
+    }
+
+    bindRemTask(handler) {
+        this.taskList.addEventListener("click", event => {
+            event.preventDefault()
+            handler(event.target.parentElement.id)
         })
     }
 
@@ -27,7 +34,8 @@ class TaskListView {
             task.id = t.id
             task.innerHTML = `
                 <h1>${t.title}</h1>
-                <p>${t.date}</p>`
+                <p>${t.date}</p>
+                <button class="remTask">Remove</button>`
 
             this.taskList.append(task)
         })
