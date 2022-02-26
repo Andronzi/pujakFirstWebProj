@@ -24,6 +24,7 @@ class TaskListController {
     }
 
     onTaskListChanged() {
+        this.taskList.sortByDate()
         this.view.display(this.taskList.tasks)
     }
 }
