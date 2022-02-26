@@ -14,7 +14,9 @@ class TaskListView {
     bindAddTask(handler) {
         this.addButton.addEventListener("click", event => {
             event.preventDefault()
-            handler(this.taskInput.value, this.dateInput.value)
+            if (this.taskInput.value || this.dateInput.value) {
+                handler(this.taskInput.value, this.dateInput.value)
+            }
         })
     }
 
@@ -54,5 +56,4 @@ class TaskListView {
             this.taskList.append(task)
         })
     }
-
 }
