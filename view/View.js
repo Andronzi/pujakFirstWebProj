@@ -3,7 +3,6 @@ class TaskListView {
         this.taskInput = document.querySelector("#title")
         this.dateInput = document.querySelector("#date");
         this.addButton = document.querySelector(".addTask");
-
         this.taskList = document.createElement("div")
         this.taskList.className = "task-list"
         document.body.append(this.taskList)
@@ -13,6 +12,15 @@ class TaskListView {
         this.addButton.addEventListener("click", ev => {
             ev.preventDefault()
             handler(this.taskInput.value, this.dateInput.value)
+        })
+    }
+
+    bindChangeTask(handler) {
+        this.taskList.addEventListener("click", e => {
+            e.preventDefault()
+            if (e.target.className === 'changeTask') {
+                handler(this.taskInput.value, this.dateInput.value, e.target.parentElement.id)
+            }
         })
     }
 
@@ -27,7 +35,8 @@ class TaskListView {
             task.id = t.id
             task.innerHTML = `
                 <h1>${t.title}</h1>
-                <p>${t.date}</p>`
+                <p>${t.date}</p>
+                <button class="changeTask">change</button>`
 
             this.taskList.append(task)
         })
