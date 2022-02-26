@@ -1,11 +1,14 @@
 class TaskListView {
     constructor() {
-        this.taskInput = document.querySelector("#title")
-        this.dateInput = document.querySelector("#date");
-        this.addButton = document.querySelector(".addTask");
+        this.root = document.querySelector("#root")
+        this.taskInput = this.root.querySelector("#title")
+        this.dateInput = this.root.querySelector("#date")
+        this.addButton = this.root.querySelector(".addTask")
+
         this.taskList = document.createElement("div")
         this.taskList.className = "task-list"
-        document.body.append(this.taskList)
+
+        this.root.append(this.taskList)
     }
 
     bindAddTask(handler) {
@@ -25,9 +28,11 @@ class TaskListView {
     }                             
                                        
     bindRemTask(handler) {
-        this.taskList.addEventListener("click", event => {
-            event.preventDefault()
-            handler(event.target.parentElement.id)
+        this.taskList.addEventListener("click", e => {
+            e.preventDefault()
+            if (e.target.className === "remTask") {
+                handler(e.target.parentElement.id)
+            }
         })
     }
 
