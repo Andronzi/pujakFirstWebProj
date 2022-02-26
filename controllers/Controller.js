@@ -1,10 +1,17 @@
-class Controller {
-    constructor(model) {
-        this.model = model
+class TaskListController {
+    constructor(view, taskList) {
+        this.view = view
+        this.taskList = taskList
+
+        this.view.bindAddTask(this.handleAddTask)
     }
 
-    setModel(titleValue, dateValue) {
-        this.model.title = titleValue
-        this.model.date = dateValue
+    handleAddTask = (title, date) => {
+        this.taskList.addTask(title, date)
+        this.onTaskListChanged()
+    }
+
+    onTaskListChanged() {
+        this.view.display(this.taskList.tasks)
     }
 }
